@@ -781,6 +781,13 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 
 		if (this.options.singleMarkerMode) {
 			layer.options.icon = this.options.iconCreateFunction({
+				getWeight: function () {
+					if (layer.options.weight === undefined) {
+						return 1;
+					} else {
+						return layer.options.weight;
+					}
+				},
 				getChildCount: function () {
 					return 1;
 				},

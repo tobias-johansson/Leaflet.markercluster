@@ -42,6 +42,18 @@ L.MarkerCluster = L.Marker.extend({
 		return this._childCount;
 	},
 
+	getWeight: function () {
+		var sum = 0;
+		this.getAllChildMarkers().map(function (marker) {
+			if (marker.options.weight  === undefined) {
+				sum += 1;
+			} else {
+				sum += marker.options.weight;
+			}
+		});
+		return sum;
+	},
+
 	//Zoom to the minimum of showing all of the child markers, or the extents of this cluster
 	zoomToBounds: function () {
 		var childClusters = this._childClusters.slice(),
